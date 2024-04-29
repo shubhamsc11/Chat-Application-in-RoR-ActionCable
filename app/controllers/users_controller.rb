@@ -1,4 +1,19 @@
 class UsersController < ApplicationController
+  # respond_to :html, :json
+
+  # def index
+  #   # @users = User.all
+  # end
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: UserDatatable.new(view_context)
+      end
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @current_user = current_user
